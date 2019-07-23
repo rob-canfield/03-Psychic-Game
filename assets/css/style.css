@@ -2,7 +2,7 @@ body {
     background-image: url(../images/IMG_20190627_0007.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
-    color: whitesmoke;
+    color: white;
     
    
 }
@@ -10,13 +10,15 @@ body {
 
 #content {
     padding: 40px;
-    border: 3px solid whitesmoke;
+    border: 3px solid white;
     margin: 15% 25% 25% 25%;
+
+
 
     
 }
 h1 {
-    font-family: 'Almendra Display', cursive;
+    font-family: 'Jacques Francois Shadow', cursive;
 }
 
 h3 {
