@@ -1,20 +1,3 @@
-// DOM VARIABLES
-
-var winsDOM =
-    document.getElementById("wins");
-
-var losesDOM =
-    document.getElementById("loses");
-
-var guessesLeftDOM =
-    document.getElementById("guess-count");
-
-var guessesDOM =
-    document.getElementById("guesses");
-
-
- 
-
 // VARIABLES
 
 // • computer letters;
@@ -38,32 +21,73 @@ var loses = 0;
 // FUNCTIONS
 
 
+
 // • Letter selection (computer) WORKING
 function generateLetter() {
-    computerLetter = letters[Math.floor(Math.random() *
-    letters.length)];
-    console.log("Computer: " + computerLetter);
+  computerLetter = letters[Math.floor(Math.random() *letters.length)];
+  // console.log("Computer: " + computerLetter);
 }
 
 generateLetter();
 
 
 
+// • Letter Guess (user) WORKING
+document.onkeyup = function (event) {
+  
+if (event.keyCode > 64 && event.keyCode < 91) {
 
-//• Letter Guess (user) WORKING
-document.onkeyup = function(event) {
-  userGuess = event.key;
-  console.log("User: " + userGuess);
-}
+    guessesRemaining --;
+    guessesLeftDOM.innerHTML = "Guesses Left: " + guessesRemaining;
+
+    userGuess = event.key;
+    // console.log("User: " + userGuess);
+
+    incorrectGuesses.push(" " + userGuess);
+    guessesDOM.innerHTML = "Your Guesses So Far: " + incorrectGuesses;
+    
+
+    
+
+    if (userGuess === computerLetter) {
+      wins++;//increase wins by one
+      winsDOM.innerHTML = "Wins: " + wins;
+      guessesRemaining = 9;//reset guesses remaining
+      guessesLeftDOM.innerHTML = "Guesses Left: " + guessesRemaining;
+      incorrectGuesses.length = 0;//reset guesses so far
+      guessesDOM.innerHTML = "Your Guesses So Far: " + incorrectGuesses;
+      generateLetter();//generate a new compter letter
+      
+    } else if (guessesRemaining === 0) {
+      loses++;//increase loses by one
+      losesDOM.innerHTML = "Loses: " + loses;
+      guessesRemaining = 9;//reset guesses remaining
+      guessesLeftDOM.innerHTML = "Guesses Left: " + guessesRemaining;
+      incorrectGuesses.length = 0;//reset guesses so far
+      guessesDOM.innerHTML = "Your Guesses So Far: " + incorrectGuesses;
+      generateLetter();//generate a new compter letter
+      
+      
+    }
+  }}
 
 
 
-//• Decrement guesses remaining
+// // DOM VARIABLES
+
+var winsDOM =
+document.getElementById("wins");
+winsDOM.innerHTML = "Wins: " + wins;
+
+
+var losesDOM =
+document.getElementById("loses");
+losesDOM.innerHTML = "Loses: " + loses;
+
+var guessesLeftDOM =
+document.getElementById("guess-count");
 guessesLeftDOM.innerHTML = "Guesses Left: " + guessesRemaining;
-document.onkeydown = function(){
-    guessesLeftDOM.innerHTML = "Guesses Left: " + (guessesRemaining + (-1));
-}
 
 
-
-
+var guessesDOM =
+document.getElementById("guesses");
